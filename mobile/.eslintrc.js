@@ -22,6 +22,7 @@ module.exports = {
         'no-use-before-define': 'off',
         'react/display-name': [0],
         'react/prop-types': [0],
-        'camelcase': 'off'
+        'camelcase': 'off',
+        "multiline-ternary": 'off'
     }
 };

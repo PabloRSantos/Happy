@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "expo-image-picker": "^9.1.1",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "multer": "^1.4.2",

@@ -10,13 +10,11 @@ import {
   Linking
 } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
-import { Feather, FontAwesome } from '@expo/vector-icons'
-import { RectButton } from 'react-native-gesture-handler'
+import { Feather } from '@expo/vector-icons'
 import { useRoute } from '@react-navigation/native'
 
 import mapMarkerImg from '../images/map-marker.png'
 import api from '../services/api'
-// import api from '../services/api';
 
 interface OrphanageDetailsParams {
   id: number;

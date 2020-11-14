@@ -1,16 +1,31 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import GoogleMapReact from 'google-map-react'
 
 import { Link } from 'react-router-dom'
-// import { Map, TileLayer } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css'
 
 import { FiPlus } from 'react-icons/fi'
 import mapMarkerImg from '../images/map-marker.svg'
 import '../styles/pages/orphanages-map.css'
+import Marker from '../components/Marker'
+import api from '../services/api'
+
+interface Orphanage {
+  id: number,
+  latitude: number,
+  longitude: number,
+  name: string
+}
 
 const OrphanagesMap: React.FC = () => {
+  const [orphanages, setOrphanages] = useState<Orphanage[]>([])
+
+  useEffect(() => {
+    api.get('orphanages')
+      .then(response => setOrphanages(response.data))
+  }, [])
+
   return (
     <div id="page-map">
       <aside>
@@ -27,16 +42,9 @@ const OrphanagesMap: React.FC = () => {
         </footer>
       </aside>
 
-      <Link to='' className='create-orphanage'>
+      <Link to='/orphanages/create' className='create-orphanage'>
         <FiPlus size={32} color='#FFF'/>
       </Link>
-
-      {/* <Map
-        center={[-29.8949111, -50.2647751]}
-        zoom={15}
-        style={{ width: '100%', height: '100%' }}>
-        <TileLayer url='https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'/>
-      </Map> */}
 
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMapReact
@@ -44,6 +52,15 @@ const OrphanagesMap: React.FC = () => {
           defaultCenter={{ lat: -29.8949111, lng: -50.2647751 }}
           defaultZoom={15}
         >
+          {orphanages.map(orphanage => (
+              <Marker 
+              key={orphanage.id}
+              lat={orphanage.latitude}
+              lng={orphanage.longitude}
+              id={orphanage.id}>
+                  {orphanage.name}
+            </Marker>
+          ))}
         </GoogleMapReact>
       </div>
     </div>

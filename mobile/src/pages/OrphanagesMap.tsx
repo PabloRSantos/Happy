@@ -35,7 +35,7 @@ const OrphanagesMap: React.FC = () => {
         Alert.alert('Permission to access location was denied')
       }
 
-      const { coords } = await Location.getCurrentPositionAsync({})
+      const { coords } = await Location.getCurrentPositionAsync()
 
       setUserLocation({
         latitude: coords.latitude,
@@ -50,7 +50,8 @@ const OrphanagesMap: React.FC = () => {
 
   return (
     <View style={styles.container}>
-    <MapView
+      {userLocation.latitude !== 0 && (
+        <MapView
       style={styles.map}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
@@ -79,6 +80,7 @@ const OrphanagesMap: React.FC = () => {
               </Marker>
         ))}
       </MapView>
+      )}
 
       <View style={styles.footer}>
         <Text style={styles.footerText}>{orphanages.length} orfanatos encontrado</Text>

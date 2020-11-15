@@ -20,7 +20,7 @@ const SelectMapPosition: React.FC = () => {
         Alert.alert('Permission to access location was denied')
       }
 
-      const { coords } = await Location.getCurrentPositionAsync({})
+      const { coords } = await Location.getCurrentPositionAsync()
 
       setUserLocation({
         latitude: coords.latitude,
@@ -39,23 +39,25 @@ const SelectMapPosition: React.FC = () => {
 
   return (
       <View style={styles.container}>
-        <MapView
-          initialRegion={{
-            latitude: userLocation.latitude,
-            longitude: userLocation.longitude,
-            latitudeDelta: 0.008,
-            longitudeDelta: 0.008
-          }}
-          style={styles.mapStyle}
-          onPress={handleSelectedMapPosition}
-        >
-          {position.latitude !== 0 && (
-            <Marker
-              icon={mapMarkerImg}
-              coordinate={{ latitude: position.latitude, longitude: position.longitude }}
-            />
-          )}
-        </MapView>
+        {userLocation.latitude !== 0 && (
+            <MapView
+            initialRegion={{
+              latitude: userLocation.latitude,
+              longitude: userLocation.longitude,
+              latitudeDelta: 0.008,
+              longitudeDelta: 0.008
+            }}
+            style={styles.mapStyle}
+            onPress={handleSelectedMapPosition}
+          >
+            {position.latitude !== 0 && (
+              <Marker
+                icon={mapMarkerImg}
+                coordinate={{ latitude: position.latitude, longitude: position.longitude }}
+              />
+            )}
+          </MapView>
+        )}
 
         {position.latitude !== 0 && (
           <RectButton style={styles.nextButton} onPress={handleNextStep}>

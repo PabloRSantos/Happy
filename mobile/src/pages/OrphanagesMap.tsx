@@ -6,7 +6,7 @@ import * as Location from 'expo-location'
 
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 
-import mapMarker from '../images/map-marker.png'
+import mapMarker from '../assets/images/map-marker.png'
 import { RectButton } from 'react-native-gesture-handler'
 import api from '../services/api'
 

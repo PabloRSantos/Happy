@@ -13,7 +13,7 @@ import MapView, { Marker } from 'react-native-maps'
 import { Feather } from '@expo/vector-icons'
 import { useRoute } from '@react-navigation/native'
 
-import mapMarkerImg from '../images/map-marker.png'
+import mapMarkerImg from '../assets/images/map-marker.png'
 import api from '../services/api'
 
 interface OrphanageDetailsParams {

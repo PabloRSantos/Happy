@@ -5,7 +5,7 @@ import { RectButton } from 'react-native-gesture-handler'
 import MapView, { MapEvent, Marker } from 'react-native-maps'
 import * as Location from 'expo-location'
 
-import mapMarkerImg from '../../images/map-marker.png'
+import mapMarkerImg from '../../assets/images/map-marker.png'
 
 const SelectMapPosition: React.FC = () => {
   const navigation = useNavigation()
